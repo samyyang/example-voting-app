@@ -26,21 +26,21 @@ pipeline {
     }
     stage('Push result image') {
       steps {		
-		withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: 'http://192.168.116.130:5000') {
+		withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: "${params.harbor_url}") {
 		  sh "docker push ${params.harbor_url}/dockersamples/result"
         }
       }
     }
     stage('Push vote image') {
       steps {
-        withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: 'http://192.168.116.130:5000') {
+        withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: "${params.harbor_url}") {
           sh "docker push ${params.harbor_url}/dockersamples/vote"
         }
       }
     }
     stage('Push worker image') {
       steps {
-        withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: 'http://192.168.116.130:5000') {
+        withDockerRegistry(credentialsId: '115f5357-4b8b-45d5-a033-ebe895b883e9', url: "${params.harbor_url}") {
           sh "docker push ${params.harbor_url}/dockersamples/worker"
         }
       }
